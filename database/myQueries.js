@@ -11,11 +11,31 @@ const mypool = mysql.createConnection({
   multipleStatements: true,
 });
 
-const getSdgSector=()=>{
+const getSdgSector = () => {
   let query = util.promisify(mypool.query).bind(mypool);
-  const sql='CALL sdg_sector'
-  return query(sql).then(res=>{return res}).catch(err=>{throw err})
-}
+  const sql = "CALL sdg_sector";
+  return query(sql)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+const getSdgDigitalDevelopment = () => {
+  let query = util.promisify(mypool.query).bind(mypool);
+  const sql = "CALL sdg_aligned";
+  
+  return query(sql)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
 module.exports = {
-  getSdgSector
+  getSdgSector,
+  getSdgDigitalDevelopment,
 };

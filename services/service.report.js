@@ -10,4 +10,12 @@ const getSdgSector = () => {
     .catch((err) => err);
 };
 
-module.exports = { getSdgSector };
+const getSdgDigitalDevelopment=()=>{
+  return surveydb.getSdgDigitalDevelopment().then((res) => {
+    const result = res[0];
+    return result;
+  })
+  .catch((err) => err);
+}
+
+module.exports = { getSdgSector,getSdgDigitalDevelopment };
