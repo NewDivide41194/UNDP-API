@@ -34,4 +34,23 @@ const GetSdgDigitalDevelopment = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-module.exports = { GetReport, GetSdgDigitalDevelopment };
+const getTargetDetail = (req, res, next) => {
+  const sdgId=req.params.sdgId
+  const targetId=req.params.targetId
+  const sectorId=req.params.sectorId
+  const countryId=req.params.countryId
+  reportService
+    .getTargetDetail(sdgId,targetId,sectorId,countryId)
+    .then((data) =>
+      res.json(
+        response({
+          success: true,
+          message: "Success",
+          payload: data,
+        })
+      )
+    )
+    .catch((err) => next(err));
+};
+
+module.exports = { GetReport, GetSdgDigitalDevelopment,getTargetDetail };

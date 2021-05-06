@@ -18,4 +18,12 @@ const getSdgDigitalDevelopment=()=>{
   .catch((err) => err);
 }
 
-module.exports = { getSdgSector,getSdgDigitalDevelopment };
+const getTargetDetail=(sdgId,targetId,sectorId,countryId)=>{
+  return surveydb.getTargetDetail(sdgId,targetId,sectorId,countryId).then((res) => {
+    const result = res[0];
+    return result;
+  })
+  .catch((err) => err);
+}
+
+module.exports = { getSdgSector,getSdgDigitalDevelopment,getTargetDetail };
