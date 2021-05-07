@@ -41,14 +41,14 @@ const getTargetDetail = (req, res, next) => {
   const countryId=req.params.countryId
   reportService
     .getTargetDetail(sdgId,targetId,sectorId,countryId)
-    .then((data) =>
+    .then((data) =>    {
       res.json(
         response({
           success: true,
           message: "Success",
-          payload: {data:data[0][0],ministries:data[1]},
+          payload: {data:data[0][0],ministries:data[1],target_name:data[2][0].target_name},
         })
-      )
+      )}
     )
     .catch((err) => next(err));
 };

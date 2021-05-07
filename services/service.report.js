@@ -22,7 +22,8 @@ const getTargetDetail=(sdgId,targetId,sectorId,countryId)=>{
   return surveydb.getTargetDetail(sdgId,targetId,sectorId,countryId).then((res) => {
     const result = res[0];
     const ministries=res[1]
-    return [result,ministries];
+    const title=res[2]
+    return [result,ministries,title];
   })
   .catch((err) => err);
 }

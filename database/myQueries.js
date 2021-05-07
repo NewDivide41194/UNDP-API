@@ -38,12 +38,10 @@ const getSdgDigitalDevelopment = () => {
 
 const getTargetDetail = (sdgId,targetId,sectorId,countryId) => {
   let query = util.promisify(mypool.query).bind(mypool);
-  console.log(sdgId,targetId,sectorId);
   const sql = "CALL target_detail(?,?,?,?)";
   
   return query(sql,[sdgId,targetId,sectorId,countryId])
     .then((res) => {
-      console.log(res);
       return res;
     })
     .catch((err) => {
