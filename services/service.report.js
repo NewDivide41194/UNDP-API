@@ -21,7 +21,8 @@ const getSdgDigitalDevelopment=()=>{
 const getTargetDetail=(sdgId,targetId,sectorId,countryId)=>{
   return surveydb.getTargetDetail(sdgId,targetId,sectorId,countryId).then((res) => {
     const result = res[0];
-    return result;
+    const ministries=res[1]
+    return [result,ministries];
   })
   .catch((err) => err);
 }

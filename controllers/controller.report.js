@@ -46,7 +46,7 @@ const getTargetDetail = (req, res, next) => {
         response({
           success: true,
           message: "Success",
-          payload: data,
+          payload: {data:data[0][0],ministries:data[1]},
         })
       )
     )
