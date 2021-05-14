@@ -1,7 +1,7 @@
-const { surveydb } = require("../database");
+const { undpDb } = require("../database");
 
 const getSdgSector = () => {
-  return surveydb
+  return undpDb
     .getSdgSector()
     .then((res) => {
       const result = res[0];
@@ -11,7 +11,7 @@ const getSdgSector = () => {
 };
 
 const getSdgDigitalDevelopment=()=>{
-  return surveydb.getSdgDigitalDevelopment().then((res) => {
+  return undpDb.getSdgDigitalDevelopment().then((res) => {
     const result = res[0];
     return result;
   })
@@ -19,7 +19,7 @@ const getSdgDigitalDevelopment=()=>{
 }
 
 const getTargetDetail=(sdgId,targetId,sectorId,countryId)=>{
-  return surveydb.getTargetDetail(sdgId,targetId,sectorId,countryId).then((res) => {
+  return undpDb.getTargetDetail(sdgId,targetId,sectorId,countryId).then((res) => {
     const result = res[0];
     const ministries=res[1]
     const title=res[2]

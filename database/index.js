@@ -1,3 +1,4 @@
-const surveydb = require('./myQueries')
+const undpDb = require('./undpQueries')
+const surveyDb = require('./surveyQueries')
 
-module.exports =  {surveydb}
+module.exports =  {undpDb,surveyDb}
