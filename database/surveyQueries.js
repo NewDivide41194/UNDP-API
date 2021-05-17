@@ -14,7 +14,7 @@ const mypool = mysql.createConnection({
 const getSection = (surveyHeaderId) => {
   let query = util.promisify(mypool.query).bind(mypool);
   const sql = "CALL section(?)";
-  return query(sql,[surveyHeaderId])
+  return query(sql, [surveyHeaderId])
     .then((res) => {
       return res;
     })
@@ -23,4 +23,16 @@ const getSection = (surveyHeaderId) => {
     });
 };
 
-module.exports={getSection}
+const getQuestion = (userId, surveyHeaderId, surveySectionId, countryId) => {
+  let query = util.promisify(mypool.query).bind(mypool);
+  const sql = "CALL get_questions(?,?,?,?)";
+  return query(sql, [userId, surveyHeaderId, surveySectionId, countryId])
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+module.exports = { getSection,getQuestion };

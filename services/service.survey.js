@@ -10,4 +10,15 @@ const getSection = (surveyHeaderId) => {
     .catch((err) => err);
 };
 
-module.exports={getSection}
+const getQuestion = (userId, surveyHeaderId, surveySectionId, countryId) => {
+  return surveyDb
+    .getQuestion(userId, surveyHeaderId, surveySectionId, countryId)
+    .then((res) => {
+      console.log(res);
+      const result = res[0];
+      return result;
+    })
+    .catch((err) => err);
+};
+
+module.exports = { getSection, getQuestion };
