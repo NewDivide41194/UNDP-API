@@ -14,8 +14,7 @@ const getQuestion = (userId, surveyHeaderId, surveySectionId, countryId) => {
   return surveyDb
     .getQuestion(userId, surveyHeaderId, surveySectionId, countryId)
     .then((res) => {
-      console.log(res);
-      const result = res[0];
+      const result = res;
       return result;
     })
     .catch((err) => err);

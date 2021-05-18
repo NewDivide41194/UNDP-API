@@ -35,4 +35,4 @@ const getQuestion = (userId, surveyHeaderId, surveySectionId, countryId) => {
     });
 };
 
-module.exports = { getSection,getQuestion };
+module.exports = { getSection, getQuestion };

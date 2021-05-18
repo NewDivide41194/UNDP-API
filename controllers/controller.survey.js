@@ -3,7 +3,7 @@ const response = require("../response/response");
 var groupArray = require("group-array");
 
 const GetSection = (req, res, next) => {
-    const surveyHeaderId=req.params.surveyHeaderId
+  const surveyHeaderId = req.params.surveyHeaderId;
   surveyService
     .getSection(surveyHeaderId)
     .then((data) => {
@@ -21,19 +21,17 @@ const GetSection = (req, res, next) => {
     );
 };
 
-
 const getQuestion = (req, res) => {
   const userId = req.params.userId;
   const surveyHeaderId = req.params.surveyHeaderId;
   const surveySectionId = req.params.surveySectionId;
   const countryId = req.params.countryId;
   let count = 0;
-console.log(req.params);
+
   surveyService
-    .getQuestion(
-      userId, surveyHeaderId, surveySectionId, countryId
-    )
+    .getQuestion(userId, surveyHeaderId, surveySectionId, countryId)
     .then((data) => {
+      console.log("===>",data[0]);
       const surveySections = Object.keys(
         groupArray(data[0], "survey_section_id")
       ).map((v, k) => {
@@ -211,4 +209,4 @@ console.log(req.params);
     );
 };
 
-module.exports={GetSection,getQuestion}
+module.exports = { GetSection, getQuestion };
