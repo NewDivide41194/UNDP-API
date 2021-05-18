@@ -23,10 +23,10 @@ const getSection = (surveyHeaderId) => {
     });
 };
 
-const getQuestion = (userId, surveyHeaderId, surveySectionId, countryId) => {
+const getQuestion = (userId,  countryId,surveyHeaderId, surveySectionId) => {
   let query = util.promisify(mypool.query).bind(mypool);
   const sql = "CALL get_questions(?,?,?,?)";
-  return query(sql, [userId, surveyHeaderId, surveySectionId, countryId])
+  return query(sql, [userId,  countryId,surveyHeaderId, surveySectionId])
     .then((res) => {
       return res;
     })
