@@ -28,10 +28,10 @@ const getQuestion = (req, res) => {
   const countryId = req.params.countryId;
   let count = 0;
 
+  console.log(surveySectionId);
   surveyService
-    .getQuestion(userId, surveyHeaderId, surveySectionId, countryId)
+    .getQuestion(userId, countryId, surveyHeaderId, surveySectionId)
     .then((data) => {
-      console.log("===>",data[0]);
       const surveySections = Object.keys(
         groupArray(data[0], "survey_section_id")
       ).map((v, k) => {

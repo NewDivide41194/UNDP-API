@@ -10,12 +10,11 @@ const getSection = (surveyHeaderId) => {
     .catch((err) => err);
 };
 
-const getQuestion = (userId, surveyHeaderId, surveySectionId, countryId) => {
+const getQuestion = (userId,  countryId,surveyHeaderId, surveySectionId) => {
   return surveyDb
-    .getQuestion(userId, surveyHeaderId, surveySectionId, countryId)
+    .getQuestion(userId,  countryId,surveyHeaderId, surveySectionId)
     .then((res) => {
-      const result = res;
-      return result;
+      return res;
     })
     .catch((err) => err);
 };
