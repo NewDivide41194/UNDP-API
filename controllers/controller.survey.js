@@ -1,7 +1,7 @@
 const { surveyService } = require("../services");
 const response = require("../response/response");
 var groupArray = require("group-array");
-
+const moment = require("moment");
 const GetSection = (req, res, next) => {
   const surveyHeaderId = req.params.surveyHeaderId;
   surveyService
@@ -210,12 +210,12 @@ const getQuestion = (req, res) => {
 };
 
 const addAnswer = (req, res) => {
-  console.log("enetettrre",req.body)
   let targetCount = req.body.data.length;
   let count = 0;
   let queryLoop = new Promise((resolve, reject) => {
     surveyService.deleteAnswer(req.body.data[0].userId, req.body.data[0].survey_headers_id, req.body.data[0].building_id, req.body.data[0].countryId, req.body.data[0].surveySectionId)
     req.body.data.map(async data => {
+      // console.log("userid->",data.userId)
       let optionChoiceId = data.optionChoiceId;
       let other = data.other;
       let userId = data.userId;

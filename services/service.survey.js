@@ -24,6 +24,6 @@ const addAnswer = (other, optionChoiceId, userId, questionId, surey_headers_id, 
 }
 
 const deleteAnswer = (userId, survey_headers_id, building_id, countryId, surveySectionId) => {
-  return surveydb.deleteAnswer(userId, survey_headers_id, building_id, countryId, surveySectionId);
+  return surveyDb.deleteAnswer(userId, survey_headers_id, building_id, countryId, surveySectionId);
 }
 module.exports = { getSection, getQuestion,addAnswer,deleteAnswer };
