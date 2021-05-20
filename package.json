@@ -15,6 +15,7 @@
     "fs": "0.0.1-security",
     "group-array": "^1.0.0",
     "http": "0.0.1-security",
+    "moment": "^2.29.1",
     "mysql2": "^2.2.5",
     "nodemon": "^2.0.7",
     "path": "^0.12.7",

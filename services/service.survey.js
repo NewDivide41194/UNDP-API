@@ -19,4 +19,11 @@ const getQuestion = (userId,  countryId,surveyHeaderId, surveySectionId) => {
     .catch((err) => err);
 };
 
-module.exports = { getSection, getQuestion };
+const addAnswer = (other, optionChoiceId, userId, questionId, surey_headers_id,  keyValue, totalQuestionCount, answeredDate, buildingType, countryId, subQuestionId, surveySectionId) => {
+  return surveyDb.addAnswer(other, optionChoiceId, userId, questionId, surey_headers_id, keyValue, totalQuestionCount, answeredDate, buildingType, countryId, subQuestionId, surveySectionId)
+}
+
+const deleteAnswer = (userId, survey_headers_id, countryId, surveySectionId) => {
+  return surveyDb.deleteAnswer(userId, survey_headers_id, countryId, surveySectionId);
+}
+module.exports = { getSection, getQuestion,addAnswer,deleteAnswer };

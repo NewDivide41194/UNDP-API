@@ -23,10 +23,10 @@ const getSection = (surveyHeaderId) => {
     });
 };
 
-const getQuestion = (userId,  countryId,surveyHeaderId, surveySectionId) => {
+const getQuestion = (userId, countryId, surveyHeaderId, surveySectionId) => {
   let query = util.promisify(mypool.query).bind(mypool);
   const sql = "CALL get_questions(?,?,?,?)";
-  return query(sql, [userId,  countryId,surveyHeaderId, surveySectionId])
+  return query(sql, [userId, countryId, surveyHeaderId, surveySectionId])
     .then((res) => {
       return res;
     })
@@ -35,4 +35,63 @@ const getQuestion = (userId,  countryId,surveyHeaderId, surveySectionId) => {
     });
 };
 
-module.exports = { getSection, getQuestion };
+const addAnswer = (
+  other,
+  optionChoiceId,
+  userId,
+  questionId,
+  survey_headers_id,
+  keyValue,
+  countryId,
+  subQuestionId,
+  surveySectionId
+) => {
+  let query = util.promisify(mypool.query).bind(mypool);
+  const sql = "CALL add_answers(?,?,?,?,?,?,?,?,?)";
+  return query(sql, [
+    other,
+    optionChoiceId,
+    userId,
+    questionId,
+    survey_headers_id,
+    keyValue,
+    countryId,
+    subQuestionId,
+    surveySectionId,
+  ])
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+const deleteAnswer = (
+  userId,
+  survey_headers_id,
+  countryId,
+  surveySectionId
+) => {
+  let query = util.promisify(mypool.query).bind(mypool);
+  const userIdParsedInt = parseInt(userId);
+  const surveyHeadersIdParsedInt = parseInt(survey_headers_id);
+  const surveySectionIdParsedInt = parseInt(surveySectionId);
+  const countryIdParsedInt = parseInt(countryId);
+
+  const sql = "CALL delete_answers(?,?,?,?)";
+  return query(sql, [
+    userIdParsedInt,
+    surveyHeadersIdParsedInt,
+    countryIdParsedInt,
+    surveySectionIdParsedInt,
+  ])
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+module.exports = { getSection, getQuestion, addAnswer, deleteAnswer };
