@@ -40,7 +40,7 @@ const addAnswer = (
   optionChoiceId,
   userId,
   questionId,
-  survey_headers_id,
+  survey_header_id,
   keyValue,
   countryId,
   subQuestionId,
@@ -53,7 +53,7 @@ const addAnswer = (
     optionChoiceId,
     userId,
     questionId,
-    survey_headers_id,
+    survey_header_id,
     keyValue,
     countryId,
     subQuestionId,
@@ -67,18 +67,14 @@ const addAnswer = (
     });
 };
 
-const deleteAnswer = (
-  userId,
-  survey_headers_id,
-  countryId,
-  surveySectionId
-) => {
+const deleteAnswer = (userId, survey_header_id, countryId, surveySectionId) => {
   let query = util.promisify(mypool.query).bind(mypool);
   const userIdParsedInt = parseInt(userId);
-  const surveyHeadersIdParsedInt = parseInt(survey_headers_id);
+  const surveyHeadersIdParsedInt = parseInt(survey_header_id);
   const surveySectionIdParsedInt = parseInt(surveySectionId);
   const countryIdParsedInt = parseInt(countryId);
 
+  console.log("??????",userIdParsedInt,surveyHeadersIdParsedInt,surveySectionIdParsedInt,countryIdParsedInt);
   const sql = "CALL delete_answers(?,?,?,?)";
   return query(sql, [
     userIdParsedInt,

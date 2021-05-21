@@ -10,20 +10,52 @@ const getSection = (surveyHeaderId) => {
     .catch((err) => err);
 };
 
-const getQuestion = (userId,  countryId,surveyHeaderId, surveySectionId) => {
+const getQuestion = (userId, countryId, surveyHeaderId, surveySectionId) => {
   return surveyDb
-    .getQuestion(userId,  countryId,surveyHeaderId, surveySectionId)
+    .getQuestion(userId, countryId, surveyHeaderId, surveySectionId)
     .then((res) => {
       return res;
     })
     .catch((err) => err);
 };
 
-const addAnswer = (other, optionChoiceId, userId, questionId, surey_headers_id,  keyValue, totalQuestionCount, answeredDate, buildingType, countryId, subQuestionId, surveySectionId) => {
-  return surveyDb.addAnswer(other, optionChoiceId, userId, questionId, surey_headers_id, keyValue, totalQuestionCount, answeredDate, buildingType, countryId, subQuestionId, surveySectionId)
-}
+const addAnswer = (
+  other,
+  optionChoiceId,
+  userId,
+  questionId,
+  surey_header_id,
+  keyValue,
+  totalQuestionCount,
+  countryId,
+  subQuestionId,
+  surveySectionId
+) => {
+  return surveyDb
+    .addAnswer(
+      other,
+      optionChoiceId,
+      userId,
+      questionId,
+      surey_header_id,
+      keyValue,
+      totalQuestionCount,
+      countryId,
+      subQuestionId,
+      surveySectionId
+    )
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => console.log("add", err));
+};
 
-const deleteAnswer = (userId, survey_headers_id, countryId, surveySectionId) => {
-  return surveyDb.deleteAnswer(userId, survey_headers_id, countryId, surveySectionId);
-}
-module.exports = { getSection, getQuestion,addAnswer,deleteAnswer };
+const deleteAnswer = (userId, survey_header_id, countryId, surveySectionId) => {
+  return surveyDb
+    .deleteAnswer(userId, survey_header_id, countryId, surveySectionId)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => console.log("delete", err));
+};
+module.exports = { getSection, getQuestion, addAnswer, deleteAnswer };
