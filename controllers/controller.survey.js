@@ -22,10 +22,10 @@ const GetSection = (req, res, next) => {
 };
 
 const getQuestion = (req, res) => {
-  const userId = req.params.userId;
-  const surveyHeaderId = req.params.surveyHeaderId;
-  const surveySectionId = req.params.surveySectionId;
-  const countryId = req.params.countryId;
+  let userId = req.query.userId;
+  const surveyHeaderId = req.query.surveyHeaderId;
+  const surveySectionId = req.query.surveySectionId;
+  const countryId = req.query.countryId;
   let count = 0;
 
   surveyService
@@ -57,6 +57,12 @@ const getQuestion = (req, res) => {
                       question_id: v1[0].primary_question,
                       question_name: v1[0].question_name,
                       input_type_id: v1[0].input_types_id,
+                      label:
+                        v1[0].label !== null
+                          ? Object.keys(groupArray(v1, "label")).map((x, y) => {
+                              return { label_no: y + 1, label_name: x };
+                            })
+                          : undefined,
                       option_group_id: v1[0].option_groups_id,
                       key: v1[0].question_key,
                       option_choices: v1.map((c) => {
@@ -84,6 +90,12 @@ const getQuestion = (req, res) => {
                       question_id: v1[0].primary_question,
                       question_name: v1[0].question_name,
                       input_type_id: v1[0].input_types_id,
+                      label:
+                        v1[0].label !== null
+                          ? Object.keys(groupArray(v1, "label")).map((x, y) => {
+                              return { label_no: y + 1, label_name: x };
+                            })
+                          : undefined,
                       option_group_id: v1[0].option_groups_id,
                       key: v1[0].question_key,
                       categories:
@@ -154,6 +166,12 @@ const getQuestion = (req, res) => {
                       question_id: v1[0].primary_question,
                       question_name: v1[0].question_name,
                       input_type_id: v1[0].input_types_id,
+                      label:
+                        v1[0].label !== null
+                          ? Object.keys(groupArray(v1, "label")).map((x, y) => {
+                              return { label_no: y + 1, label_name: x };
+                            })
+                          : undefined,
                       option_group_id: v1[0].option_groups_id,
                       key: v1[0].question_key,
                       categories: dataResult1.filter(
