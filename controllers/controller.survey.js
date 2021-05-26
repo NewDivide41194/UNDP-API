@@ -274,7 +274,7 @@ const addAnswer = (req, res) => {
               count++;
               if (count == targetCount) resolve({ answeredCount: count });
             } catch (error) {
-              console.log("error add Answer ", error.toString());
+              res.json(response({ success: false, error: error }));
             }
           })
           .catch((err) => console.log(err))
