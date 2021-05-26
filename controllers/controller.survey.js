@@ -230,7 +230,6 @@ const addAnswer = (req, res) => {
   let targetCount = req.body.data.length;
   let count = 0;
   let queryLoop = new Promise((resolve, reject) => {
-    console.log("===========>", req.body.data[0]);
     surveyService
       .deleteAnswer(
         req.body.data[0].userId,

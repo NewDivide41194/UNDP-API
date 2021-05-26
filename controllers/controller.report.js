@@ -35,10 +35,10 @@ const GetSdgDigitalDevelopment = (req, res, next) => {
 };
 
 const getTargetDetail = (req, res, next) => {
-  const sdgId=req.params.sdgId
-  const targetId=req.params.targetId
-  const sectorId=req.params.sectorId
-  const countryId=req.params.countryId
+  const sdgId=req.query.sdgId
+  const targetId=req.query.targetId
+  const sectorId=req.query.sectorId
+  const countryId=req.query.countryId
   reportService
     .getTargetDetail(sdgId,targetId,sectorId,countryId)
     .then((data) =>    {

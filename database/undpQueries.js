@@ -26,7 +26,7 @@ const getSdgSector = () => {
 const getSdgDigitalDevelopment = () => {
   let query = util.promisify(mypool.query).bind(mypool);
   const sql = "CALL sdg_aligned";
-  
+
   return query(sql)
     .then((res) => {
       return res;
@@ -36,11 +36,11 @@ const getSdgDigitalDevelopment = () => {
     });
 };
 
-const getTargetDetail = (sdgId,targetId,sectorId,countryId) => {
+const getTargetDetail = (sdgId, targetId, sectorId, countryId) => {
   let query = util.promisify(mypool.query).bind(mypool);
   const sql = "CALL target_detail(?,?,?,?)";
-  
-  return query(sql,[sdgId,targetId,sectorId,countryId])
+
+  return query(sql, [sdgId, targetId, sectorId, countryId])
     .then((res) => {
       return res;
     })
@@ -48,8 +48,38 @@ const getTargetDetail = (sdgId,targetId,sectorId,countryId) => {
       throw err;
     });
 };
+
+const getRecord = (userId, countryId, sdgId,targetId) => {
+  let query = util.promisify(mypool.query).bind(mypool);
+  const sql = "CALL target_record(?,?,?)";
+
+  return query(sql, [userId, countryId, sdgId,targetId])
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+
+const updateRecord = (userId, countryId, sdgId,targetId) => {
+  let query = util.promisify(mypool.query).bind(mypool);
+  const sql = "CALL update_record()";
+
+  return query(sql, [userId, countryId, sdgId,targetId])
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
 module.exports = {
   getSdgSector,
   getSdgDigitalDevelopment,
-  getTargetDetail
+  getTargetDetail,
+  getRecord,
+  updateRecord
 };
