@@ -49,11 +49,11 @@ const getTargetDetail = (sdgId, targetId, sectorId, countryId) => {
     });
 };
 
-const getRecord = (userId, countryId, sdgId,targetId) => {
+const getRecord = (userId, countryId, sdgId) => {
   let query = util.promisify(mypool.query).bind(mypool);
   const sql = "CALL get_record(?,?,?)";
 
-  return query(sql, [userId, countryId, sdgId,targetId])
+  return query(sql, [userId, countryId, sdgId])
     .then((res) => {
       return res;
     })

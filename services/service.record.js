@@ -1,11 +1,10 @@
 const { undpDb } = require("../database");
 
-const getRecord = (userId, countryId, sdgId,targetId) => {
+const getRecord = (userId, countryId, sdgId) => {
   return undpDb
-    .getRecord(userId, countryId, sdgId,targetId)
+    .getRecord(userId, countryId, sdgId)
     .then((res) => {
-      const result = res[0];
-      return result;
+      return res;
     })
     .catch((err) => err);
 };

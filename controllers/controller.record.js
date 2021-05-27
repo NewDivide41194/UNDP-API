@@ -4,42 +4,12 @@ const response = require("../response/response");
 const GetRecord = (req, res, next) => {
   const userId = req.query.userId;
   const countryId = req.query.countryId;
-  const sdgId = req.query.surveyHeaderId;
-
-  const dummyGetData = [
-    {
-      id: 1,
-      sdgId: 1,
-      sdgTargetNo: 1,
-      relevantPoliciesAndDevelopmentPlan: "Text",
-      nationalStrategicPlan: "Text",
-      digitalDevelopment: {
-        policyAndProgrammes: "Text",
-        technologySystemsAndPlatforms: "Text",
-      },
-      detailView1: {
-        sectorLinkages: 1,
-        ictComponent: "Text",
-        statusUpdateId: 4,
-      },
-      detailView2: {
-        overall: 2,
-        themes: {
-          people: 1,
-          planet: 0,
-          prosperity: 1,
-          peace: 0,
-          partnership: 1,
-        },
-      },
-    },
-  ];
+  const sdgId = req.query.sdgId;
 
   recordService
     .getRecord(userId, countryId, sdgId)
     .then((data) => {
-      console.log("------->", data);
-      const modifiedData = data.map((v, k) => {
+      const modifiedData = data[0].map((v, k) => {
         return {
           id: v.id,
           sdgId: v.sdg_id,
@@ -51,9 +21,9 @@ const GetRecord = (req, res, next) => {
             technologySystemsAndPlatforms: "Text",
           },
           detailView1: {
-            sectorLinkages: v.sector_id,
-            ictComponent: "Text",
-            statusUpdateId: 4,
+            sectorId: v.sector_id,
+            ictComponent: v.ict_component,
+            statusUpdateId: v.status_update_id,
           },
           detailView2: {
             overall: v.aligned,
@@ -67,6 +37,7 @@ const GetRecord = (req, res, next) => {
           },
         };
       });
+      const sector = data[1];
       res.json(
         response({
           success: true,
@@ -77,7 +48,9 @@ const GetRecord = (req, res, next) => {
     })
     .catch((err) =>
       // next(err)
-      res.json(response({ success: false, message: "Error!", error: err.toString() }))
+      res.json(
+        response({ success: false, message: "Error!", error: err.toString() })
+      )
     );
 };
 
